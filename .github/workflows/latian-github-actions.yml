@@ -1,6 +1,9 @@
 name: Latian Nestjs Actions
+
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+
 on: [push]
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,8 +23,12 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
-      - run: yarn install --frozen-lockfile
-      - run: yarn lint
-      - run: yarn build
-      - run: yarn test
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - name: Run eslint
+        run: yarn lint
+      - name: Build app
+        run: yarn build
+      - name: Run test
+        run: yarn test
       - run: echo "🍏 This job's status is ${{ job.status }}."
